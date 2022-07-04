@@ -234,7 +234,49 @@ section1:dropdown({name = "Aimbot AimPart",def = "Select AimPart",max = 4,option
 	getgenv().AimPart = L_71_arg0
 end
 })
-    
+section1:toggle({name = "Airshot Function",def = false,callback = function(L_131_arg0)
+	CheckIfJumped = L_131_arg0
+end})
+section1:toggle({name = "Auto Adjust",def = false,callback = function(L_132_arg0)
+	AutoPrediction = L_132_arg0
+end})
+section1:slider({name = "Aim Radius",def = 1, max = 100,min = 1,rounding = true,ticking = false,measuring = "",callback = function(L_133_arg0)
+	getgenv().AimRadius = L_133_arg0
+end})
+
+local section1 = tab:section({name = "Extras",side = "right",size = 250})
+section1:button({name = "Spinbot (C)",callback = function()
+	local L_165_ = false
+	local L_166_ = game:GetService("UserInputService");
+	L_166_.InputBegan:Connect(function(L_167_arg0, L_168_arg1)
+		if (L_167_arg0.KeyCode == Enum.KeyCode.C and L_168_arg1 == false) then
+			if L_165_ == false then
+				L_165_ = true
+				wait()
+				getgenv().urspeed = 500
+				local L_169_ = game.Players.LocalPlayer.Character
+				while wait() do
+					L_169_.HumanoidRootPart.CFrame = L_169_.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(urspeed), 0)
+				end
+			else
+				L_165_ = false
+				getgenv().urspeed = 0
+			end
+		end
+	end);
+	game:GetService('RunService').Stepped:connect(function()
+		if L_165_ == true then
+		end
+	end)
+	game:GetService('RunService').Stepped:connect(function()
+		if L_165_ == false then
+			stopTracks();
+		end
+	end)
+end})
+
+
+
 local tab = window:page({name = "Aiming I"})
 
 local tab = window:page({name = "Visuals"})
@@ -244,6 +286,8 @@ local tab = window:page({name = "Antilock"})
 local tab = window:page({name = "Teleports"})
 
 local tab = window:page({name = "Misc"})
+
+
 
 local webhookcheck =
    is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
