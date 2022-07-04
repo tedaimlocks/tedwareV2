@@ -731,10 +731,114 @@ end
 })
 section1:button({name = "Food",callback = function()
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.39318847656, -39.649200439453, -935.27795410156)
+end
+})
+section1:button({name = "Uphill Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(485.651947, 112.5, -644.316833, -0.998899043, 1.33881997e-06, 0.0469136797, 8.00526664e-07, 1, -1.14929126e-05, -0.0469136797, -1.14426994e-05, -0.998899043)
 end})
+section1:button({name = "AK Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-658.31897, 80.9998474, -778.077576, -0.142138869, 1.05273443e-08, -0.989845812, 4.51260629e-09, 1, 9.98731764e-09, 0.989845812, -3.04721426e-09, -0.142138869)
+end
+})
+section1:button({name = "Playground Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-260.836182, 126.424866, -877.783875, -0.977067351, -1.56508904e-05, -0.212922528, 9.92513264e-07, 1, -7.80593255e-05, 0.212922528, -7.64806027e-05, -0.977067351)
+end
+})
+section1:button({name = "Revolver Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-659.053162, 110.748001, -158.224365, 0.146754071, -2.38941595e-08, -0.989172995, -1.60316838e-09, 1, -2.43935396e-08, 0.989172995, 5.16566212e-09, 0.146754071)
+end
+})
+section1:button({name = "Casino Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1048.95093, 110.254997, -154.554016, 0.198458344, 0.0412604436, -0.979240835, -4.06676299e-05, 0.999113858, 0.0420895219, 0.98010987, -0.00831318926, 0.198284075)
+end
+})
+section1:button({name = "Circus Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(292.643799, 122.749977, -860.128784, 0.986730993, 5.09704545e-09, 0.162363499, -9.24942123e-10, 1, -2.57716568e-08, -0.162363499, 2.52795154e-08, 0.986730993)
+end
+})
+section1:button({name = "Flank Mountain",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(376.730621, 130.748001, -245.620468, 0.996583343, 5.90310174e-06, -0.0825867951, -1.72590728e-06, 1, 5.06508768e-05, 0.0825867951, -5.03353003e-05, 0.996583343)
+end
+})
+local section1 = tab:section({name = "Teleports",side = "right",size = 180})
+section1:button({name = "Gas Station",callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(608.599426, 65.3087997, -267.643066, -0.414288431, -1.04483455e-09, -0.91014564, -1.30518893e-08, 1, 4.79309215e-09, 0.91014564, 1.38648408e-08, -0.41428)
+end
+})
+section1:button({name = "School Roof",callback = function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-581.790283, 68.4947281, 331.046448, 0.220051467, -7.56681329e-05, 0.975498199, -3.96428077e-05, 0.999999583, 8.65130132e-05, -0.975498199, -5.77078645e-05, 0.22005)
+end
+})
+section1:button({name = "Gym Roof",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-374.538391, 102.052887, -440.20871, 0.958144963, 9.24065989e-06, -0.286283433, -9.98981818e-07, 1, 2.89345699e-05, 0.286283433, -2.74375216e-05, 0.958144963)
+end})
+section1:button({name = "Circus",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(170.510178, 59.6617432, -944.884216, 0.806685388, -8.34191383e-08, 0.590979934, 9.47717194e-09, 1, 1.28217792e-07, -0.590979934, -9.78305081e-08, 0.806685388)
+end
+})
+section1:button({name = "UFO",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(65.1504517, 138.999954, -691.819031, -0.935115993, -5.9791418e-08, -0.354341775, -3.10840989e-08, 1, -8.67077574e-08, 0.354341775, -7.0067415e-08, -0.935115993)
+end
+})
+section1:button({name = "Bank Tree",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-374.538391, 102.052887, -440.20871, 0.958144963, 9.24065989e-06, -0.286283433, -9.98981818e-07, 1, 2.89345699e-05, 0.286283433, -2.74375216e-05, 0.958144963)
+end
+})
+
 local tab = window:page({name = "Misc"})
+local section1 = tab:section({name = "Misc",side = "left",size = 250})
+section1:button({name = "No Recoil",callback = function()
+	function isframework(L_158_arg0)
+		if tostring(L_158_arg0) == "Framework" then
+			return true
+		end
+		return false
+	end
+	function checkArgs(L_159_arg0, L_160_arg1)
+		if tostring(L_159_arg0):lower():find("camera") and tostring(L_160_arg1) == "CFrame" then
+			return true
+		end
+		return false
+	end
+	newindex = hookmetamethod(game, "__newindex", function(L_161_arg0, L_162_arg1, L_163_arg2)
+		local L_164_ = getcallingscript()
+		if isframework(L_164_) and checkArgs(L_161_arg0, L_162_arg1) then
+			return;
+		end
+		return newindex(L_161_arg0, L_162_arg1, L_163_arg2)
+	end)
+end
+})
 
-
+section1:button({name = "Headless",callback = function()
+	local L_393_ = game.Players.LocalPlayer.Character
+	local L_394_ = L_393_:WaitForChild("Head")
+	local L_395_ = L_394_:WaitForChild("face")
+	L_395_.Transparency = 1 --Texture = "rbxassetid://209712379"
+	L_394_.Transparency = 1
+end
+})
+section1:button({name = "Korblox",callback = function()
+	local L_396_ = game.Players.LocalPlayer.Character
+	local L_397_ = game.Players.LocalPlayer.Character
+	local L_398_ = L_396_.Head
+	local L_399_ = L_398_.face
+	local L_400_ = L_397_.RightFoot
+	local L_401_ = L_397_.RightLowerLeg
+	local L_402_ = L_397_.RightUpperLeg
+	local L_403_ = L_397_.LeftFoot
+	local L_404_ = L_397_.LeftLowerLeg
+	local L_405_ = L_397_.LeftUpperLeg
+    
+    -- Right
+	L_400_.MeshId = "http://www.roblox.com/asset/?id=902942093"
+	L_401_.MeshId = "http://www.roblox.com/asset/?id=902942093"
+	L_402_.MeshId = "http://www.roblox.com/asset/?id=902942096"
+	L_402_.TextureID = "http://roblox.com/asset/?id=902843398"
+	L_400_.Transparency = 1
+	L_401_.Transparency = 1
+end
+})
 
 local webhookcheck =
    is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
