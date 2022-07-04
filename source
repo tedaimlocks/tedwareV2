@@ -275,14 +275,457 @@ section1:button({name = "Spinbot (C)",callback = function()
 	end)
 end})
 
-
+section1:button({name = "Lay Spinbot (T)",callback = function()
+	local L_383_ = false
+	local L_384_ = game:GetService("UserInputService");
+	L_384_.InputBegan:Connect(function(L_385_arg0, L_386_arg1)
+		if (L_385_arg0.KeyCode == Enum.KeyCode.T and L_386_arg1 == false) then
+			if L_383_ == false then
+				L_383_ = true
+				wait()
+				getgenv().urspeed = 500
+				local L_387_ = game.Players.LocalPlayer.Character
+				while wait() do
+					L_387_.HumanoidRootPart.CFrame = L_387_.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(urspeed), 0)
+				end
+			else
+				L_383_ = false
+				getgenv().urspeed = 0
+			end
+		end
+	end);
+	game:GetService('RunService').Stepped:connect(function()
+		if L_383_ == true then
+			local L_388_ = Instance.new("Animation");
+			function stopTracks()
+				for L_389_forvar0, L_390_forvar1 in next, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks(
+    
+        ) do
+					if (L_390_forvar1.Animation.AnimationId:match("rbxassetid")) then
+						L_390_forvar1:Stop();
+					end;
+				end;
+			end;
+			function loadAnimation(L_391_arg0)
+				if L_388_.AnimationId == L_391_arg0 then
+					L_388_.AnimationId = "1";
+				else
+					L_388_.AnimationId = L_391_arg0;
+					local L_392_ =
+                game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):LoadAnimation(
+                L_388_
+            );
+					L_392_:Play();
+				end;
+			end;
+			loadAnimation("rbxassetid://3152378852");
+			wait(1.2)
+		end
+	end)
+	game:GetService('RunService').Stepped:connect(function()
+		if L_383_ == false then
+			stopTracks();
+		end
+	end)
+end})
 
 local tab = window:page({name = "Aiming I"})
+local section1 = tab:section({name = "Silent Aim",side = "left",size = 250})
+section1:button({name = "Silent Aim",callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tayodevelup/imsoniac/main/silentaim", true))()
+end
+})
+section1:textbox({name = "Silent Aim Prediction",def = "",placeholder = "Select Prediction",callback = function(L_72_arg0)
+	DaHoodSettings.Prediction = L_72_arg0
+end
+})
+section1:textbox({name = "Silent Aim FOV",def = "",placeholder = "Select FOV",callback = function(L_74_arg0)
+	Aiming.FOV = L_74_arg0
+end
+})
+section1:dropdown({name = "Silent Aim Part",def = "Select AimPart",max = 4,options = {"Head","UpperTorso","HumanoidRootPart","LowerTorso"},callback = function(L_73_arg0)
+	Aiming.TargetPart = L_73_arg0
+end
+})
+section1:toggle({name = "Silent Aim FOV Toggle",def = false,callback = function(L_75_arg0)
+	Aiming.ShowFOV = L_75_arg0
+end
+})
+local section1 = tab:section({name = "Extras",side = "right",size = 250})
+section1:button({name = "Silent Aimbot",callback = function()
+	function notify(L_461_arg0, L_462_arg1, L_463_arg2)
+		game.StarterGui:SetCore("SendNotification", {
+			Title = L_461_arg0;
+			Text = L_462_arg1;
+			Duration = L_463_arg2;
+		})
+	end
+	local L_448_ = Instance.new("ScreenGui")
+	local L_449_ = Instance.new("TextLabel")
+
+--Properties:
+	L_448_.Parent = game.CoreGui
+	L_448_.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	getgenv().Settings = {
+		Nigger = false
+	}
+	local L_450_ = getgenv().Settings
+	_G.KEY = "q"
+	_G.PART = "LowerTorso"
+	_G.PRED = 0.037
+	_G.Frame = Vector3.new(0, 0.53, 0)
+	local L_451_ = game:GetService "Workspace".CurrentCamera
+	local L_452_
+	local L_453_ = false
+	local L_454_ = nil
+	local L_455_ = game.Players.LocalPlayer:GetMouse()
+	local L_456_ = nil
+	local L_457_ = Instance.new("Folder", game.CoreGui)
+	function makemarker(L_464_arg0, L_465_arg1, L_466_arg2, L_467_arg3, L_468_arg4)
+		local L_469_ = Instance.new("BillboardGui", L_464_arg0)
+		L_469_.Name = "PP"
+		L_469_.Adornee = L_465_arg1
+		L_469_.Size = UDim2.new(L_467_arg3, L_468_arg4, L_467_arg3, L_468_arg4)
+		L_469_.AlwaysOnTop = true
+		local L_470_ = Instance.new("Frame", L_469_)
+		L_470_.Size = UDim2.new(4, 0, 4, 0)
+		L_470_.BackgroundTransparency = 0.1
+		L_470_.BackgroundColor3 = L_466_arg2
+		local L_471_ = Instance.new("UICorner", L_470_)
+		L_471_.CornerRadius = UDim.new(50, 50)
+		return (L_469_)
+	end
+	local L_458_ = game.Players:GetPlayers()
+	function noob(L_472_arg0)
+		local L_473_
+		repeat
+			wait()
+		until L_472_arg0.Character
+		local L_474_ = makemarker(L_457_, L_472_arg0.Character:WaitForChild(_G.PART), Color3.fromRGB(255, 255, 255), 0.0, 0)
+		L_474_.Name = L_472_arg0.Name
+		L_472_arg0.CharacterAdded:connect(
+        function(L_476_arg0)
+			L_474_.Adornee = L_476_arg0:WaitForChild(_G.PART)
+		end
+    )
+		local L_475_ = Instance.new("TextLabel", L_474_)
+		L_475_.BackgroundTransparency = 1
+		L_475_.Position = UDim2.new(0, 0, 0, -50)
+		L_475_.Size = UDim2.new(0, 100, 0, 100)
+		L_475_.Font = Enum.Font.SourceSansSemibold
+		L_475_.TextSize = 14
+		L_475_.TextColor3 = Color3.new(1, 1, 1)
+		L_475_.TextStrokeTransparency = 0
+		L_475_.TextYAlignment = Enum.TextYAlignment.Bottom
+		L_475_.Text = "Name: " .. L_472_arg0.Name
+		L_475_.ZIndex = 10
+		spawn(
+        function()
+			while wait() do
+				if L_472_arg0.Character then
+                --TextLabel.Text = player.Name.." | Bounty: "..tostring(player:WaitForChild("leaderstats").Wanted.Value).." | "..tostring(math.floor(player.Character:WaitForChild("Humanoid").Health))
+				end
+			end
+		end
+    )
+	end
+	for L_477_forvar0 = 1, #L_458_ do
+		if L_458_[L_477_forvar0] ~= game.Players.LocalPlayer then
+			noob(L_458_[L_477_forvar0])
+		end
+	end
+	game.Players.PlayerAdded:connect(
+    function(L_478_arg0)
+		noob(L_478_arg0)
+	end
+)
+	game.Players.PlayerRemoving:Connect(
+    function(L_479_arg0)
+		L_457_[L_479_arg0.Name]:Destroy()
+	end
+)
+	spawn(
+    function()
+		L_456_.Anchored = true
+		L_456_.CanCollide = false
+		L_456_.Size = Vector3.new(0.1, 0.1, 0.1)
+		L_456_.Transparency = 0.1
+		makemarker(L_456_, L_456_, Color3.fromRGB(255, 255, 255), 0.20, 0)
+	end
+)
+	L_455_.KeyDown:Connect(
+    function(L_480_arg0)
+		if L_480_arg0 ~= _G.KEY then
+			return
+		end
+		if L_453_ then
+            -- guimain[Plr.Name].Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			L_453_ = false
+			if L_450_.Nigger then
+				notify("TEDWARE V2", "Unlocked", 1)
+			end
+		else
+            --guimain[Plr.Name].Frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+			L_453_ = true
+			L_452_ = getClosestPlayerToCursor()
+			if L_450_.Nigger then
+				notify("TEDWARE V2", "Target: " .. tostring(L_452_.Character.Humanoid.DisplayName) .. "", 1)
+			end
+		end
+	end)
+	function getClosestPlayerToCursor()
+		local L_481_
+		local L_482_ = math.huge
+		for L_483_forvar0, L_484_forvar1 in pairs(game.Players:GetPlayers()) do
+			if
+            L_484_forvar1 ~= game.Players.LocalPlayer and L_484_forvar1.Character and L_484_forvar1.Character:FindFirstChild("Humanoid") and
+                L_484_forvar1.Character.Humanoid.Health ~= 0 and
+                L_484_forvar1.Character:FindFirstChild(_G.PART)
+         then
+				local L_485_ = L_451_:WorldToViewportPoint(L_484_forvar1.Character.PrimaryPart.Position)
+				local L_486_ = (Vector2.new(L_485_.X, L_485_.Y) - Vector2.new(L_455_.X, L_455_.Y)).magnitude
+				if L_486_ < L_482_ then
+					L_481_ = L_484_forvar1
+					L_482_ = L_486_
+				end
+			end
+		end
+		return L_481_
+	end
+	game:GetService "RunService".Stepped:connect(
+    function()
+		if L_453_ and L_452_.Character and L_452_.Character:FindFirstChild(_G.PART) then
+			L_456_.CFrame =
+                CFrame.new(L_452_.Character[_G.PART].Position + _G.Frame + (L_452_.Character[_G.PART].Velocity * L_454_))
+		else
+			L_456_.CFrame = CFrame.new(0, 9999, 0)
+		end
+	end
+)
+	local L_459_ = getrawmetatable(game)
+	local L_460_ = L_459_.__namecall
+	setreadonly(L_459_, false)
+	L_459_.__namecall =
+    newcclosure(
+    function(...)
+		local L_487_ = {
+			...
+		}
+		if L_453_ and getnamecallmethod() == "FireServer" and L_487_[2] == "UpdateMousePos" then
+			L_487_[3] = L_452_.Character[_G.PART].Position + _G.Frame + (L_452_.Character[_G.PART].Velocity * L_454_)
+			return L_460_(unpack(L_487_))
+		end
+		return L_460_(...)
+	end
+)
+	game.Players.LocalPlayer.Chatted:Connect(
+    function(L_488_arg0)
+		if L_488_arg0 == "print" then
+			print(_G.PRED)
+		end
+	end
+)
+	game.Players.LocalPlayer.Chatted:Connect(
+    function(L_489_arg0)
+		if L_489_arg0 == "Code:1029" then
+			_G.KEY = nil
+			_G.AIR = nil
+			_G.PART = nil
+			_G.PRED = nil
+			L_449_.Visible = false
+		end
+	end
+)
+	game.Players.LocalPlayer.Chatted:Connect(
+    function(L_490_arg0)
+		if L_490_arg0 == "Code:1030" then
+			_G.KEY = "q"
+			_G.AIR = 0.00005
+			_G.PART = "LowerTorso"
+			_G.PRED = 0.029
+			L_449_.Visible = true
+		end
+	end
+)
+	game.Players.LocalPlayer.Chatted:Connect(
+    function(L_491_arg0)
+		if L_491_arg0 == "P+" then
+			_G.PRED = _G.PRED + 0.001
+		end
+	end
+)
+	game.Players.LocalPlayer.Chatted:Connect(
+    function(L_492_arg0)
+		if L_492_arg0 == "P-" then
+			_G.PRED = _G.PRED - 0.001
+		end
+	end
+)
+	while wait() do
+		if getClosestPlayerToCursor().Character.Humanoid.Jump == true and getClosestPlayerToCursor().Character.Humanoid.FloorMaterial == Enum.Material.Air then
+			_G.Frame = Vector3.new(0, -2.3, 0)
+			wait(0.05)
+		else
+			local L_493_ = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+			local L_494_ = tostring(L_493_)
+			local L_495_ = L_494_:split(" ")
+			local L_496_ = L_495_[1]
+			L_454_ = L_496_ / 950 + _G.PRED
+			_G.Frame = Vector3.new(0, 0.53, 0)
+		end
+	end
+end
+})
+
 
 local tab = window:page({name = "Visuals"})
+local L_18_ = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+local section1 = tab:section({name = "ESP",side = "left",size = 250})
+section1:toggle({name = "ESP",def = false,callback = function(L_201_arg0)
+	L_18_:Toggle(L_201_arg0)
+end
+})
+section1:toggle({name = "ESP Tracers",def = false,callback = function(L_202_arg0)
+	L_18_.Tracers = L_202_arg0
+end
+})
+section1:toggle({name = "ESP Names",def = false,callback = function(L_203_arg0)
+	L_18_.Names = L_203_arg0
+end})
+section1:toggle({name = "ESP Boxes",def = false,callback = function(L_204_arg0)
+	L_18_.Boxes = L_204_arg0
+end
+})
+
 
 local tab = window:page({name = "Antilock"})
-
+local section1 = tab:section({name = "Antilock",side = "left",size = 250})
+section1:button({name = "Antilock",callback = function()
+	repeat
+		wait()
+	until game:IsLoaded()
+	getgenv().Fix = true
+	getgenv().TeclasWS = {
+		["tecla1"] = "nil",
+		["tecla2"] = "nil",
+		["tecla3"] = "H"
+	}
+	local L_121_ = game:GetService("Players")
+	local L_122_ = game:GetService("StarterGui") or "son una mierda"
+	local L_123_ = L_121_.LocalPlayer
+	local L_124_ = L_123_:GetMouse()
+	local L_125_ = getrenv()._G
+	local L_126_ = getrawmetatable(game)
+	local L_127_ = L_126_.__newindex
+	local L_128_ = L_126_.__index
+	local L_129_ = 22
+	local L_130_ = true
+	function anunciar_atentado_terrorista(L_138_arg0)
+		L_122_:SetCore("SendNotification", {
+			Title = "Anti-lock",
+			Text = L_138_arg0
+		})
+	end
+	getgenv().TECHWAREWALKSPEED_LOADED = true
+	wait(1.5)
+	anunciar_atentado_terrorista("Press  " .. TeclasWS.tecla3 .. " to turn on/off anti lock fix")
+	L_124_.KeyDown:Connect(
+            function(L_139_arg0)
+		if L_139_arg0:lower() == TeclasWS.tecla1:lower() then
+			L_129_ = L_129_ + 1
+			anunciar_atentado_terrorista("播放器速度已提高 (speed = " .. tostring(L_129_) .. ")")
+		elseif L_139_arg0:lower() == TeclasWS.tecla2:lower() then
+			L_129_ = L_129_ - 1
+			anunciar_atentado_terrorista("玩家的速度已降低 (speed = " .. tostring(L_129_) .. ")")
+		elseif L_139_arg0:lower() == TeclasWS.tecla3:lower() then
+			if L_130_ then
+				L_130_ = false
+				anunciar_atentado_terrorista("anti lock fix off")
+			else
+				L_130_ = true
+				anunciar_atentado_terrorista("anti lock fix on")
+			end
+		end
+	end
+        )
+	setreadonly(L_126_, false)
+	L_126_.__index =
+            newcclosure(
+            function(L_140_arg0, L_141_arg1)
+		local L_142_ = checkcaller()
+		if L_141_arg1 == "WalkSpeed" and not L_142_ then
+			return L_125_.CurrentWS
+		end
+		return L_128_(L_140_arg0, L_141_arg1)
+	end
+        )
+	L_126_.__newindex =
+            newcclosure(
+            function(L_143_arg0, L_144_arg1, L_145_arg2)
+		local L_146_ = checkcaller()
+		if L_130_ then
+			if L_144_arg1 == "WalkSpeed" and L_145_arg2 ~= 0 and not L_146_ then
+				return L_127_(L_143_arg0, L_144_arg1, L_129_)
+			end
+		end
+		return L_127_(L_143_arg0, L_144_arg1, L_145_arg2)
+	end
+        )
+	setreadonly(L_126_, true)
+	repeat
+		wait()
+	until game:IsLoaded()
+	local L_131_ = game:service("Players")
+	local L_132_ = L_131_.LocalPlayer
+	repeat
+		wait()
+	until L_132_.Character
+	local L_133_ = game:service("UserInputService")
+	local L_134_ = game:service("RunService")
+	local L_135_ = -0.27
+	local L_136_ = false
+	local L_137_
+	L_133_.InputBegan:connect(
+            function(L_147_arg0)
+		if L_147_arg0.KeyCode == Enum.KeyCode.LeftBracket then
+			L_135_ = L_135_ + 0.01
+			print(L_135_)
+			wait(0.2)
+			while L_133_:IsKeyDown(Enum.KeyCode.LeftBracket) do
+				wait()
+				L_135_ = L_135_ + 0.01
+				print(L_135_)
+			end
+		end
+		if L_147_arg0.KeyCode == Enum.KeyCode.RightBracket then
+			L_135_ = L_135_ - 0.01
+			print(L_135_)
+			wait(0.2)
+			while L_133_:IsKeyDown(Enum.KeyCode.RightBracket) do
+				wait()
+				L_135_ = L_135_ - 0.01
+				print(L_135_)
+			end
+		end
+		if L_147_arg0.KeyCode == Enum.KeyCode.Z then
+			L_136_ = not L_136_
+			if L_136_ == true then
+				repeat
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame +
+                                game.Players.LocalPlayer.Character.Humanoid.MoveDirection * L_135_
+					game:GetService("RunService").Stepped:wait()
+				until L_136_ == false
+			end
+		end
+	end
+        )
+end
+})
+section1:toggle({name = "Antilock (165+ FPS)",def = false,callback = function(L_182_arg0)
+	L_2_ = L_182_arg0
+end
+})
 local tab = window:page({name = "Teleports"})
 
 local tab = window:page({name = "Misc"})
