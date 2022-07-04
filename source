@@ -1,3 +1,5 @@
+
+
 local L_1_ = "t"
 local L_2_ = game.Players.LocalPlayer:GetMouse()
 L_2_.KeyDown:Connect(
@@ -38,7 +40,7 @@ local window = library:new({textsize = 13.5,font = Enum.Font.RobotoMono,name = "
 
 local tab = window:page({name = "Aiming"})
 local section1 = tab:section({name = "Aimbot",side = "left",size = 250})
-section1:button({name = "Aimbot", function()
+section1:button({name = "Aimbot",callback = function()
 getgenv().AimPart = "HumanoidRootPart"
 	getgenv().AimlockKey = "c"
 	getgenv().AimRadius = 30
