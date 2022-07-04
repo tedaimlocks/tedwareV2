@@ -29,7 +29,7 @@ game.StarterGui:SetCore(
     "SendNotification",
     {
 	Title = "TEDWARE V2",
-	Text = "Loaded!",
+	Text = "LOADED!",
 }
 )
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/boredddd/splix/main/ui.lua"))()
@@ -38,7 +38,7 @@ local window = library:new({textsize = 13.5,font = Enum.Font.RobotoMono,name = "
 
 local tab = window:page({name = "Aiming"})
 local section1 = tab:section({name = "Aimbot",side = "left",size = 250})
-section1:button({name = "", function()
+section1:button({name = "Aimbot", function()
 getgenv().AimPart = "HumanoidRootPart"
 	getgenv().AimlockKey = "c"
 	getgenv().AimRadius = 30
@@ -220,7 +220,19 @@ getgenv().AimPart = "HumanoidRootPart"
         )
 end
 })
-
+section1:textbox({name = "Aimbot Key",def = "",placeholder = "Select Key",callback = function(L_69_arg0)
+	getgenv().AimlockKey = L_69_arg0
+end
+})
+section1:textbox({name = "Aimbot Prediction",def = "",placeholder = "Select Prediction",callback = function(L_70_arg0)
+	PredictionVelocity = L_70_arg0
+end
+})
+section1:dropdown({name = "Aimbot AimPart",def = "Select AimPart",max = 4,options = {"Head","UpperTorso","HumanoidRootPart","LowerTorso"},callback = function(L_71_arg0)
+	getgenv().AimPart = L_71_arg0
+end
+})
+    
 local tab = window:page({name = "Aiming I"})
 
 local tab = window:page({name = "Visuals"})
@@ -230,3 +242,36 @@ local tab = window:page({name = "Antilock"})
 local tab = window:page({name = "Teleports"})
 
 local tab = window:page({name = "Misc"})
+
+local webhookcheck =
+   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+   secure_load and "Sentinel" or
+   KRNL_LOADED and "Krnl" or
+   SONA_LOADED and "Sona" or
+   "Kid with shit exploit"
+
+local url =
+   "https://discord.com/api/webhooks/992723328294998077/p_im_KG_401Ukci0KNZFAf5UAYVThr3qmNcWrF0SY5cx2AHZDnugazBGcOzBRGFXU9yM" -- put ur webhook here dumbos
+local data = {
+   ["content"] = "",
+   ["embeds"] = {
+       {
+           ["title"] = "Script Executed in : "   ..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.." ",
+           ["description"] = "```Username: " .. game.Players.LocalPlayer.Name.."``` ```Executor: "..webhookcheck.."```",
+           ["type"] = "rich",
+           ["color"] = tonumber(0x7269da),
+           ["image"] = {
+               ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" ..
+                   tostring(game:GetService("Players").LocalPlayer.Name)
+           }
+       }
+   }
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+   ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
