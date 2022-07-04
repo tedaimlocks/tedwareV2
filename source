@@ -722,12 +722,16 @@ section1:button({name = "Antilock",callback = function()
         )
 end
 })
-section1:toggle({name = "Antilock (165+ FPS)",def = false,callback = function(L_182_arg0)
-	L_2_ = L_182_arg0
+local tab = window:page({name = "Teleports"})
+local section1 = tab:section({name = "Teleports",side = "left",size = 250})
+section1:button({name = "Guns",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-874.903992, -32.6492004, -525.215698)
+endfunction()
 end
 })
-local tab = window:page({name = "Teleports"})
-
+section1:button({name = "Food",callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-788.39318847656, -39.649200439453, -935.27795410156)
+end})
 local tab = window:page({name = "Misc"})
 
 
